@@ -1,35 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myweb-deploy
+  name: nginx-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: web
+      app: nginx
   template:
     metadata:
       labels:
-        app: web
+        app: nginx
     spec:
       containers:
-        - name: myweb
-          image: nginx:1.14.2
-          ports:
-            - containerPort: 8080
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: myweb-svc-lb
+  name: nginx-service
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "external"
-    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
-    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
 spec:
   type: LoadBalancer
   selector:
-    app: web
+    app: nginx
   ports:
-    - port: 80
-      targetPort: 8080
+  - protocol: TCP
+    port: 80
+    targetPort: 80
