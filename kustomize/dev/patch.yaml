@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: test-nginx      # 실제 Deployment 이름과 동일
 spec:
-  replicas: 2
+  replicas: 2           # 변경하고 싶은 값
