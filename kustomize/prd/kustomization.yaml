@@ -1,0 +1,7 @@
+resources:
+  - ../common       # base 참조
+
+patches:
+  - path: patch.yaml
+
+namespace: tomcat 

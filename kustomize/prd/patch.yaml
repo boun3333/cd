@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-nginx        # Base(Common) Deployment 이름과 정확히 일치
+spec:
+  replicas: 2             # PRD 환경용 replica 수
+  template:
+    spec:
+      containers:
+      - name: tomcat      # 컨테이너 이름 변경
+        image: tomcat:10.1
+        ports:
+        - containerPort: 8080
