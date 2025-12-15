@@ -3,4 +3,4 @@ kind: Deployment
 metadata:
   name: test-nginx      # 실제 Deployment 이름과 동일
 spec:
-  replicas: 4           # 변경하고 싶은 값
+  replicas: 1           # 변경하고 싶은 값
